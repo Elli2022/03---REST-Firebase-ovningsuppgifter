@@ -1,5 +1,5 @@
 // Skapa en ett nytt projekt och databas per övning.
-// Produkter - 1
+//____________________Produkter - 1_____________________________
 // Firebase
 // Skapa en databas med minst 5 produkter. (Utgå från en butik som existerar om du vill.) 
 // Varje produkt ska innehålla 
