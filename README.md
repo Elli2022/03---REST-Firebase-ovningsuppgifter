@@ -1,29 +1,31 @@
 # Firebase REST Lesson Exercises
 
-Det här repot samlar flera mindre skolovningar fran en lektion den 8 februari 2023 med fokus pa REST, Firebase och vanilj-JavaScript.
+This repository collects several small classroom exercises from a lesson on February 8, 2023 focused on REST, Firebase, and vanilla JavaScript.
 
-## Vad projektet ar
+## What this project is
 
-Det har ar inte ett enda stort slutprojekt, utan en samlad lektionsmapp dar flera sma ovningar har slagits ihop i ett och samma repo. Syftet med sammanslagningen ar att behalla skolarbetet, men ge det en tydligare struktur och ett mer beskrivande namn.
+This is not one large final project. It is a structured lesson archive where several smaller exercises have been brought together in a single repository. The goal of the merge is to preserve the coursework while making it easier to navigate and understand.
 
-## Vad man ovar pa
+## What it practices
 
-- `fetch` och asynkron JavaScript
-- GET, POST, PUT, PATCH och DELETE
-- JSONPlaceholder som test-API
-- Firebase Realtime Database via REST-endpoints
-- enkel DOM-rendering i webblasaren
-- hur data kan lasas in, formas om och visas visuellt
+- `fetch` and asynchronous JavaScript
+- GET, POST, PUT, PATCH, and DELETE
+- JSONPlaceholder as a test API
+- Firebase Realtime Database through REST endpoints
+- simple DOM rendering in the browser
+- loading, reshaping, and displaying remote data
 
-## Ovningar i repot
+## Exercises in this repository
 
-### 1. Firebase produkter 1
+### 1. Firebase Products 1
 
-En ovning dar produkter hamtas fran Firebase och skrivs ut i webblasaren som enkla kort.
+An exercise where product data is requested from Firebase and rendered as simple cards in the browser.
 
-### 2. REST CRUD med JSONPlaceholder
+Note: the original Firebase database for this exercise is no longer publicly readable, so the public demo now falls back to archived sample data and explains that on the page.
 
-En ovning som demonstrerar flera HTTP-metoder mot ett test-API:
+### 2. REST CRUD with JSONPlaceholder
+
+An exercise that demonstrates several HTTP methods against a test API:
 
 - GET
 - POST
@@ -33,35 +35,35 @@ En ovning som demonstrerar flera HTTP-metoder mot ett test-API:
 
 ### 3. Firebase CRUD
 
-En ovning dar data lases, tas bort, laggs tillbaka och ersatts i en Firebase-databas.
+An exercise where data is read, removed, posted back, and replaced in a Firebase database.
 
-### 4. Firebase produkter 2
+### 4. Firebase Products 2
 
-En uppfoljande ovning dar en ny produkt skickas till Firebase och samlingen sedan lases igen.
+A follow-up exercise where a new product is posted to Firebase and the collection is then requested again.
 
-## Struktur
+## Structure
 
 - `index.html`
 - `css/style.css`
 - `js/script.js`
 
-Roten ar en enkel landningssida for projektet och ar den sida som publiceras via GitHub Pages.
+The project root is a simple landing page and is the page published through GitHub Pages.
 
 - `related-exercises/firebase-produkter-1/`
 - `related-exercises/2023-02-08-REST-Firebase/`
 - `related-exercises/firebase/`
 - `related-exercises/firebase-produkter-2/`
 
-Varje undermapp innehaller en bevarad ovning eller demo.
+Each subfolder contains a preserved exercise or demo from the same lesson.
 
 ## GitHub Pages
 
-Repot ar tankt att publiceras pa:
+The repository is published at:
 
 - `https://elli2022.github.io/firebase-rest-lesson-exercises/`
 
-## Viktigt att veta
+## Context
 
-- Det har ar bevarat skolarbete, inte en produktionsapp.
-- Koden visar larande och experiment, inte en slutpolerad applikation.
-- Vissa kommentarer och strukturer ar medvetet enkla eftersom de kommer fran en tidig undervisningskontext.
+- This is preserved coursework, not a production application.
+- The code reflects learning and experimentation rather than a polished final delivery.
+- Some files are intentionally simple because they come from an early classroom context.

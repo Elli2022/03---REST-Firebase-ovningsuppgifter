@@ -1,8 +1,8 @@
 # Related exercises
 
-Den har mappen samlar de enskilda demo-ovningarna fran samma lektion.
+This folder collects the preserved exercises from the same classroom lesson.
 
-- `firebase-produkter-1/` - Firebase-produktlista som visas i webblasaren
-- `2023-02-08-REST-Firebase/` - CRUD-ovning mot JSONPlaceholder
-- `firebase/` - Firebase CRUD med lasning, borttagning och overskrivning
-- `firebase-produkter-2/` - uppfoljande produktovning med POST till Firebase
+- `firebase-produkter-1/` - a Firebase product list rendered in the browser
+- `2023-02-08-REST-Firebase/` - a CRUD exercise using JSONPlaceholder
+- `firebase/` - Firebase CRUD with reading, deletion, reposting, and replacement
+- `firebase-produkter-2/` - a follow-up product exercise with POST requests to Firebase

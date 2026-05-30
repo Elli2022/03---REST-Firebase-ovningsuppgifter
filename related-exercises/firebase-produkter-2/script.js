@@ -1,8 +1,8 @@
-// Produkter - 2
-// JS
-// Skapa ett objekt med en ny produkt som innehåller samma egenskaper som de andra.
-// Använd metoden POST för att lägga till den nya produkten till firebase-databasen.
-// Hämta alla produkter igen och visa dem i browsern.
+// Products 2
+// JavaScript
+// Create a new product object with the same shape as the existing entries.
+// Use POST to add the product to the Firebase database.
+// Request the products again and render them in the browser.
 
 const baseUrl = `https://produkt-2-default-rtdb.europe-west1.firebasedatabase.app/products`;
 

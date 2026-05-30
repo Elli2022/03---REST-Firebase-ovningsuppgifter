@@ -56,6 +56,15 @@ body {
 .status {
     margin: 18px 0 16px;
     color: var(--muted);
+    line-height: 1.7;
+}
+
+.status-warning {
+    padding: 14px 16px;
+    border: 1px solid rgba(15, 118, 110, 0.16);
+    border-radius: 16px;
+    background: rgba(15, 118, 110, 0.08);
+    color: #194643;
 }
 
 .product-grid {

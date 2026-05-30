@@ -3,9 +3,9 @@ const exerciseCount = document.getElementById('exercise-count');
 const footerYear = document.getElementById('footer-year');
 
 if (exerciseCount) {
-    exerciseCount.textContent = `${exerciseCards.length} ovningar`;
+    exerciseCount.textContent = `${exerciseCards.length} exercises`;
 }
 
 if (footerYear) {
-    footerYear.textContent = `Bevarad lektionsovning • ${new Date().getFullYear()}`;
+    footerYear.textContent = `Preserved lesson exercise • ${new Date().getFullYear()}`;
 }

@@ -22,7 +22,7 @@ async function deleteNode() {
 deleteNode();
 
 
-//lägger till objektet igen
+// Add the object again
 async function postCat(obj) {
     const url = baseUrl + 'posts/cats/0.json';
 
@@ -73,4 +73,3 @@ const putObj = {
 };
 
 put(putObj);
-
