@@ -21,7 +21,7 @@ This is not one large final project. It is a structured lesson archive where sev
 
 An exercise where product data is requested from Firebase and rendered as simple cards in the browser.
 
-Note: the original Firebase database for this exercise is no longer publicly readable, so the public demo now falls back to archived sample data and explains that on the page.
+This upgraded version now targets a stronger architecture for portfolio use: Firebase Web SDK, anonymous authentication, and protected Realtime Database reads instead of a fully public endpoint.
 
 ### 2. REST CRUD with JSONPlaceholder
 

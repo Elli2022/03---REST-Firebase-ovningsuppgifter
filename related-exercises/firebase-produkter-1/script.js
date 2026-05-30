@@ -1,101 +1,153 @@
-const baseUrl = 'https://produkter-9dbc3-default-rtdb.europe-west1.firebasedatabase.app/';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+import { get, getDatabase, ref } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+import {
+    firebaseProjectConfig,
+    legacyFallbackPath,
+    productsPath,
+    usingPlaceholderConfig
+} from "./firebase-config.js";
 
-const productList = document.getElementById('product-list');
-const statusText = document.getElementById('status');
-const archivedProducts = [
-    {
-        name: 'Classic Shirt',
-        description: 'Archived sample data shown because the original Firebase endpoint is no longer publicly readable.',
-        price: '39 SEK'
-    },
-    {
-        name: 'Weekend Jacket',
-        description: 'Fallback product card used to preserve the visual structure of the classroom exercise.',
-        price: '89 SEK'
-    },
-    {
-        name: 'Canvas Bag',
-        description: 'Simple placeholder data that keeps the public demo understandable on GitHub Pages.',
-        price: '24 SEK'
-    }
-];
+const productList = document.getElementById("product-list");
+const statusText = document.getElementById("status");
+const authState = document.getElementById("auth-state");
+const setupPanel = document.getElementById("setup-panel");
+const setupSummary = document.getElementById("setup-summary");
 
 function normalizeProducts(data) {
-    if (!data || typeof data !== 'object') {
+    if (!data || typeof data !== "object") {
         return [];
     }
 
     return Object.values(data)
         .flatMap((value) => {
-            if (value && typeof value === 'object' && !Array.isArray(value)) {
+            if (value && typeof value === "object" && !Array.isArray(value)) {
                 return Object.values(value);
             }
 
             return [value];
         })
-        .filter((item) => item && typeof item === 'object');
+        .filter((item) => item && typeof item === "object");
 }
 
-function setStatus(message, variant = '') {
+function setStatus(message, variant = "") {
     statusText.textContent = message;
-    statusText.classList.toggle('status-warning', variant === 'warning');
+    statusText.className = variant ? `status status-${variant}` : "status";
+}
+
+function setAuthState(message, variant = "") {
+    authState.textContent = message;
+    authState.className = variant ? `auth-pill auth-pill-${variant}` : "auth-pill";
+}
+
+function showSetupPanel(summary) {
+    setupPanel.hidden = false;
+    setupSummary.textContent = summary;
 }
 
 function renderProducts(products) {
-    productList.innerHTML = '';
+    productList.innerHTML = "";
 
     products.forEach((product) => {
-        const name = product.Namn ?? product.name ?? 'Product';
-        const description = product.Beskrivning ?? product.description ?? 'No description available.';
-        const price = product.Pris ?? product.price ?? 'Price unavailable';
-        const imageUrl = product.url ?? product.image ?? '';
+        const name = product.Namn ?? product.name ?? "Product";
+        const description = product.Beskrivning ?? product.description ?? "No description available.";
+        const price = product.Pris ?? product.price ?? "Price unavailable";
+        const imageUrl = product.url ?? product.image ?? "";
 
-        const card = document.createElement('article');
-        card.className = 'product-card';
+        const card = document.createElement("article");
+        card.className = "product-card";
 
         card.innerHTML = `
             <h2>${name}</h2>
             <p>${description}</p>
             <strong>${price}</strong>
-            ${imageUrl ? `<img src="${imageUrl}" alt="${name}">` : ''}
+            ${imageUrl ? `<img src="${imageUrl}" alt="${name}">` : ""}
         `;
 
         productList.append(card);
     });
 }
 
-async function getProducts() {
-    try {
-        const response = await fetch(baseUrl + '.json');
-        const data = await response.json();
+async function readProducts(database) {
+    const pathsToTry = [productsPath];
 
-        if (data && typeof data === 'object' && data.error) {
-            setStatus(
-                'The original Firebase database now returns a permission error, so this public page is showing archived sample data instead.',
-                'warning'
-            );
-            renderProducts(archivedProducts);
-            return;
+    if (legacyFallbackPath) {
+        pathsToTry.push(legacyFallbackPath);
+    }
+
+    for (const path of pathsToTry) {
+        const snapshot = await get(ref(database, path));
+
+        if (!snapshot.exists()) {
+            continue;
         }
 
-        const products = normalizeProducts(data);
+        const products = normalizeProducts(snapshot.val());
+
+        if (products.length) {
+            return {
+                products,
+                path: path || "/"
+            };
+        }
+    }
+
+    return {
+        products: [],
+        path: productsPath
+    };
+}
+
+async function startSecureDemo() {
+    if (usingPlaceholderConfig) {
+        setAuthState("Firebase config required", "warning");
+        setStatus(
+            "The secure Firebase architecture is ready, but the live demo still needs your real Firebase web app config before it can authenticate.",
+            "warning"
+        );
+        showSetupPanel(
+            "Add the real apiKey and appId in firebase-config.js, then enable Anonymous sign-in in Firebase Authentication."
+        );
+        return;
+    }
+
+    try {
+        setAuthState("Creating anonymous session...", "neutral");
+        const app = initializeApp(firebaseProjectConfig);
+        const auth = getAuth(app);
+        await signInAnonymously(auth);
+
+        setAuthState("Anonymous session active", "success");
+        setStatus("Authenticated successfully. Loading protected product data...", "neutral");
+
+        const database = getDatabase(app);
+        const { products, path } = await readProducts(database);
 
         if (!products.length) {
-            setStatus('No live products were found. Showing archived sample data instead.', 'warning');
-            renderProducts(archivedProducts);
+            setStatus(
+                "Authentication worked, but no product records were found at the configured database path yet.",
+                "warning"
+            );
+            showSetupPanel(
+                "Anonymous auth is working. The next step is to store your product data under /products or update the configured path in firebase-config.js."
+            );
             return;
         }
 
-        setStatus(`Showing ${products.length} products.`);
+        setStatus(`Showing ${products.length} protected products from ${path}.`, "success");
         renderProducts(products);
     } catch (error) {
-        setStatus(
-            'The live Firebase request could not be completed, so this page is showing archived sample data instead.',
-            'warning'
-        );
-        renderProducts(archivedProducts);
+        const message = error?.code === "auth/admin-restricted-operation"
+            ? "Firebase rejected anonymous sign-in. Enable Anonymous authentication in the Firebase console to complete the secure demo."
+            : error?.code === "PERMISSION_DENIED"
+                ? "Authentication worked, but the database rules still block reads. Allow authenticated users to read your products path."
+                : "The secure Firebase connection could not be completed yet. Check the Firebase config, anonymous auth setting, and database rules.";
+
+        setAuthState("Secure connection blocked", "warning");
+        setStatus(message, "warning");
+        showSetupPanel(message);
         console.error(error);
     }
 }
 
-getProducts();
+startSecureDemo();

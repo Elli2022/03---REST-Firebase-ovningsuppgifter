@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js"></script>
     <title>Firebase Products 1</title>
 </head>
 <body>
@@ -14,13 +14,42 @@
             <p class="eyebrow">Exercise 1</p>
             <h1>Firebase Products 1</h1>
             <p>
-                This exercise requests product data from Firebase and displays it as simple cards.
+                This version signs visitors in anonymously and reads protected Firebase data instead
+                of relying on a fully public database.
             </p>
         </header>
 
+        <section class="meta-grid">
+            <article class="info-card">
+                <h2>Portfolio direction</h2>
+                <p>
+                    Modular Firebase Web SDK, anonymous authentication, and read-only database
+                    rules for a stronger production-minded portfolio example.
+                </p>
+            </article>
+            <article class="info-card">
+                <h2>Session status</h2>
+                <p id="auth-state" class="auth-pill">Preparing secure session...</p>
+            </article>
+        </section>
+
         <section>
-            <div id="status" class="status">Loading products...</div>
+            <div id="status" class="status">Preparing secure Firebase connection...</div>
             <div id="product-list" class="product-grid"></div>
+        </section>
+
+        <section id="setup-panel" class="setup-panel" hidden>
+            <h2>Connection checklist</h2>
+            <p id="setup-summary">
+                The secure Firebase flow is in place, but this public demo still needs your actual
+                Firebase web app details and console settings before it can read live data.
+            </p>
+            <ol class="checklist">
+                <li>Add your Firebase web app config in <code>firebase-config.js</code>.</li>
+                <li>Enable Anonymous sign-in in Firebase Authentication.</li>
+                <li>Store products under <code>/products</code> or update the configured path.</li>
+                <li>Set Realtime Database rules so authenticated users can read products.</li>
+            </ol>
         </section>
     </main>
 </body>
