@@ -1,7 +1,8 @@
 # Related exercises
 
-This folder contains the other small repositories from the same Firebase/REST lesson on 2023-02-08.
+Den har mappen samlar de enskilda demo-ovningarna fran samma lektion.
 
-- `2023-02-08-REST-Firebase/` - JSONPlaceholder REST CRUD practice
-- `firebase/` - Firebase CRUD practice on `posts/cats`
-- `firebase-produkter-2/` - follow-up product POST exercise
+- `firebase-produkter-1/` - Firebase-produktlista som visas i webblasaren
+- `2023-02-08-REST-Firebase/` - CRUD-ovning mot JSONPlaceholder
+- `firebase/` - Firebase CRUD med lasning, borttagning och overskrivning
+- `firebase-produkter-2/` - uppfoljande produktovning med POST till Firebase

@@ -1,14 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Samlade skolovningar i JavaScript, REST och Firebase från en lektion den 8 februari 2023.">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
-    <title>Mall</title>
+    <title>Firebase REST Lesson Exercises</title>
 </head>
 <body>
+    <div class="page-shell">
+        <header class="hero">
+            <p class="eyebrow">Skolprojekt och lektionsovningar</p>
+            <h1>Firebase REST Lesson Exercises</h1>
+            <p class="intro">
+                En samlad oversikt over flera mindre ovningar i JavaScript, REST och Firebase
+                fran lektionen den 8 februari 2023.
+            </p>
+            <div class="hero-meta">
+                <span>Lektion: 2023-02-08</span>
+                <span>Teknik: JavaScript, REST, Firebase</span>
+                <span id="exercise-count">4 ovningar</span>
+            </div>
+        </header>
 
+        <main>
+            <section class="panel">
+                <h2>Om projektet</h2>
+                <p>
+                    Det har repot samlar flera sma kursovningar som tidigare lag i separata
+                    repos. Landningssidan finns for att ge struktur, sammanhang och en tydligare
+                    ingang till varje delovning.
+                </p>
+            </section>
+
+            <section class="panel">
+                <h2>Vad man ovar pa</h2>
+                <div class="skill-grid">
+                    <article>
+                        <h3>HTTP och fetch</h3>
+                        <p>GET, POST, PUT, PATCH och DELETE mot test-API och Firebase.</p>
+                    </article>
+                    <article>
+                        <h3>Datatolkning</h3>
+                        <p>Att lasa JSON, forma om data och hantera olika datastrukturer.</p>
+                    </article>
+                    <article>
+                        <h3>DOM-rendering</h3>
+                        <p>Att visa hamtad data i webblasaren med enkel vanilj-JavaScript.</p>
+                    </article>
+                    <article>
+                        <h3>Firebase REST</h3>
+                        <p>Att kommunicera med Firebase Realtime Database via URL-endpoints.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="section-heading">
+                    <h2>Ovningar</h2>
+                    <p>Oppna varje demo eller utforska snapshots fran samma lektion.</p>
+                </div>
+
+                <div class="exercise-grid">
+                    <article class="exercise-card">
+                        <p class="card-label">Ovning 1</p>
+                        <h3>Firebase produkter 1</h3>
+                        <p>
+                            Hamtar produkter fran Firebase och visar dem som enkla kort i
+                            webblasaren.
+                        </p>
+                        <a href="related-exercises/firebase-produkter-1/index.html">Oppna demo</a>
+                    </article>
+
+                    <article class="exercise-card">
+                        <p class="card-label">Ovning 2</p>
+                        <h3>REST CRUD med JSONPlaceholder</h3>
+                        <p>
+                            Visar hur flera HTTP-metoder fungerar mot ett enkelt test-API.
+                        </p>
+                        <a href="related-exercises/2023-02-08-REST-Firebase/index.html">Oppna demo</a>
+                    </article>
+
+                    <article class="exercise-card">
+                        <p class="card-label">Ovning 3</p>
+                        <h3>Firebase CRUD</h3>
+                        <p>
+                            Laser, tar bort, skriver tillbaka och ersatter data i Firebase.
+                        </p>
+                        <a href="related-exercises/firebase/index.html">Oppna demo</a>
+                    </article>
+
+                    <article class="exercise-card">
+                        <p class="card-label">Ovning 4</p>
+                        <h3>Firebase produkter 2</h3>
+                        <p>
+                            Lagger till en ny produkt i Firebase och laser sedan om produktlistan.
+                        </p>
+                        <a href="related-exercises/firebase-produkter-2/index.html">Oppna demo</a>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Firebase REST Lesson Exercises</p>
+            <p id="footer-year">Bevarad lektionsovning</p>
+        </footer>
+    </div>
 </body>
 </html>
